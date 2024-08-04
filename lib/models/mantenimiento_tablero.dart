@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class MantenimientoTablero {
   final String mantenimiento;
   final String tablero;
@@ -14,6 +12,9 @@ class MantenimientoTablero {
   final double ab;
   final double ac;
   final double bc;
+  final double an; // Agregado
+  final double bn; // Agregado
+  final double cn; // Agregado
   final double a;
   final double b;
   final double c;
@@ -39,6 +40,9 @@ class MantenimientoTablero {
     required this.ab,
     required this.ac,
     required this.bc,
+    required this.an, // Agregado
+    required this.bn, // Agregado
+    required this.cn, // Agregado
     required this.a,
     required this.b,
     required this.c,
@@ -66,6 +70,9 @@ class MantenimientoTablero {
       'ab': ab,
       'ac': ac,
       'bc': bc,
+      'an': an, // Agregado
+      'bn': bn, // Agregado
+      'cn': cn, // Agregado
       'a': a,
       'b': b,
       'c': c,
@@ -94,6 +101,9 @@ class MantenimientoTablero {
       ab: json['ab'],
       ac: json['ac'],
       bc: json['bc'],
+      an: json['an'], // Agregado
+      bn: json['bn'], // Agregado
+      cn: json['cn'], // Agregado
       a: json['a'],
       b: json['b'],
       c: json['c'],

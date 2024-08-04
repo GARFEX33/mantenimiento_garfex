@@ -14,6 +14,7 @@ class FormularioTablerosBloc extends Bloc<FormularioTablerosEvent, FormularioTab
     on<ResetFormulario>(_onResetFormulario);
     on<UpdateMantenimiento>(_onUpdateMantenimiento);
     on<UpdateTablero>(_onUpdateTablero);
+    on<UpdateFecha>(_onUpdateFecha); // Added
     on<UpdateFasesYNeutroIdentificados>(_onUpdateFasesYNeutroIdentificados);
     on<UpdateConductoresPeinados>(_onUpdateConductoresPeinados);
     on<UpdateProteccionesDeAcuerdoAlCalibre>(_onUpdateProteccionesDeAcuerdoAlCalibre);
@@ -24,6 +25,9 @@ class FormularioTablerosBloc extends Bloc<FormularioTablerosEvent, FormularioTab
     on<UpdateAb>(_onUpdateAb);
     on<UpdateAc>(_onUpdateAc);
     on<UpdateBc>(_onUpdateBc);
+    on<UpdateAn>(_onUpdateAn); // Added
+    on<UpdateBn>(_onUpdateBn); // Added
+    on<UpdateCn>(_onUpdateCn); // Added
     on<UpdateA>(_onUpdateA);
     on<UpdateB>(_onUpdateB);
     on<UpdateC>(_onUpdateC);
@@ -80,6 +84,13 @@ class FormularioTablerosBloc extends Bloc<FormularioTablerosEvent, FormularioTab
     final currentState = state;
     if (currentState is FormularioTablerosUpdated) {
       emit(currentState.copyWith(tablero: event.tablero));
+    }
+  }
+
+  void _onUpdateFecha(UpdateFecha event, Emitter<FormularioTablerosState> emit) {
+    final currentState = state;
+    if (currentState is FormularioTablerosUpdated) {
+      emit(currentState.copyWith(fecha: event.fecha));
     }
   }
 
@@ -150,6 +161,27 @@ class FormularioTablerosBloc extends Bloc<FormularioTablerosEvent, FormularioTab
     final currentState = state;
     if (currentState is FormularioTablerosUpdated) {
       emit(currentState.copyWith(bc: event.value));
+    }
+  }
+
+  void _onUpdateAn(UpdateAn event, Emitter<FormularioTablerosState> emit) {
+    final currentState = state;
+    if (currentState is FormularioTablerosUpdated) {
+      emit(currentState.copyWith(an: event.value));
+    }
+  }
+
+  void _onUpdateBn(UpdateBn event, Emitter<FormularioTablerosState> emit) {
+    final currentState = state;
+    if (currentState is FormularioTablerosUpdated) {
+      emit(currentState.copyWith(bn: event.value));
+    }
+  }
+
+  void _onUpdateCn(UpdateCn event, Emitter<FormularioTablerosState> emit) {
+    final currentState = state;
+    if (currentState is FormularioTablerosUpdated) {
+      emit(currentState.copyWith(cn: event.value));
     }
   }
 

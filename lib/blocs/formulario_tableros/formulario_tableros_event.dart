@@ -1,20 +1,12 @@
 part of 'formulario_tableros_bloc.dart';
 
 @immutable
-abstract class FormularioTablerosEvent extends Equatable {
-  const FormularioTablerosEvent();
-
-  @override
-  List<Object> get props => [];
-}
+abstract class FormularioTablerosEvent {}
 
 class EnviarFormulario extends FormularioTablerosEvent {
   final MantenimientoTablero mantenimientoTablero;
 
-  const EnviarFormulario({required this.mantenimientoTablero});
-
-  @override
-  List<Object> get props => [mantenimientoTablero];
+  EnviarFormulario({required this.mantenimientoTablero});
 }
 
 class CargarMantenimientos extends FormularioTablerosEvent {}
@@ -24,197 +16,155 @@ class ResetFormulario extends FormularioTablerosEvent {}
 class UpdateMantenimiento extends FormularioTablerosEvent {
   final String mantenimiento;
 
-  const UpdateMantenimiento(this.mantenimiento);
-
-  @override
-  List<Object> get props => [mantenimiento];
+  UpdateMantenimiento(this.mantenimiento);
 }
 
 class UpdateTablero extends FormularioTablerosEvent {
   final String tablero;
 
-  const UpdateTablero(this.tablero);
+  UpdateTablero(this.tablero);
+}
 
-  @override
-  List<Object> get props => [tablero];
+class UpdateFecha extends FormularioTablerosEvent {
+  final DateTime fecha;
+
+  UpdateFecha(this.fecha);
 }
 
 class UpdateFasesYNeutroIdentificados extends FormularioTablerosEvent {
   final bool value;
 
-  const UpdateFasesYNeutroIdentificados(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateFasesYNeutroIdentificados(this.value);
 }
 
 class UpdateConductoresPeinados extends FormularioTablerosEvent {
   final bool value;
 
-  const UpdateConductoresPeinados(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateConductoresPeinados(this.value);
 }
 
 class UpdateProteccionesDeAcuerdoAlCalibre extends FormularioTablerosEvent {
   final bool value;
 
-  const UpdateProteccionesDeAcuerdoAlCalibre(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateProteccionesDeAcuerdoAlCalibre(this.value);
 }
 
 class UpdateDirectorioDeCircuitos extends FormularioTablerosEvent {
   final bool value;
 
-  const UpdateDirectorioDeCircuitos(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateDirectorioDeCircuitos(this.value);
 }
 
 class UpdateTableroConBarraDeTierras extends FormularioTablerosEvent {
   final bool value;
 
-  const UpdateTableroConBarraDeTierras(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateTableroConBarraDeTierras(this.value);
 }
 
 class UpdateTableroConBarraDeNeutros extends FormularioTablerosEvent {
   final bool value;
 
-  const UpdateTableroConBarraDeNeutros(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateTableroConBarraDeNeutros(this.value);
 }
 
 class UpdateTableroAterrizado extends FormularioTablerosEvent {
   final bool value;
 
-  const UpdateTableroAterrizado(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateTableroAterrizado(this.value);
 }
 
 class UpdateAb extends FormularioTablerosEvent {
   final double value;
 
-  const UpdateAb(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateAb(this.value);
 }
 
 class UpdateAc extends FormularioTablerosEvent {
   final double value;
 
-  const UpdateAc(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateAc(this.value);
 }
 
 class UpdateBc extends FormularioTablerosEvent {
   final double value;
 
-  const UpdateBc(this.value);
+  UpdateBc(this.value);
+}
 
-  @override
-  List<Object> get props => [value];
+class UpdateAn extends FormularioTablerosEvent {
+  final double value;
+
+  UpdateAn(this.value);
+}
+
+class UpdateBn extends FormularioTablerosEvent {
+  final double value;
+
+  UpdateBn(this.value);
+}
+
+class UpdateCn extends FormularioTablerosEvent {
+  final double value;
+
+  UpdateCn(this.value);
 }
 
 class UpdateA extends FormularioTablerosEvent {
   final double value;
 
-  const UpdateA(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateA(this.value);
 }
 
 class UpdateB extends FormularioTablerosEvent {
   final double value;
 
-  const UpdateB(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateB(this.value);
 }
 
 class UpdateC extends FormularioTablerosEvent {
   final double value;
 
-  const UpdateC(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateC(this.value);
 }
 
 class UpdateNeutro extends FormularioTablerosEvent {
   final double value;
 
-  const UpdateNeutro(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateNeutro(this.value);
 }
 
 class UpdateTierraFisica extends FormularioTablerosEvent {
   final double value;
 
-  const UpdateTierraFisica(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateTierraFisica(this.value);
 }
 
 class UpdateFotoAntes extends FormularioTablerosEvent {
   final List<int> value;
 
-  const UpdateFotoAntes(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateFotoAntes(this.value);
 }
 
 class UpdateFotoDespues extends FormularioTablerosEvent {
   final List<int> value;
 
-  const UpdateFotoDespues(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateFotoDespues(this.value);
 }
 
 class UpdateTermoAntes extends FormularioTablerosEvent {
   final String value;
 
-  const UpdateTermoAntes(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateTermoAntes(this.value);
 }
 
 class UpdateTermoDespues extends FormularioTablerosEvent {
   final String value;
 
-  const UpdateTermoDespues(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateTermoDespues(this.value);
 }
 
 class UpdateObservaciones extends FormularioTablerosEvent {
   final String value;
 
-  const UpdateObservaciones(this.value);
-
-  @override
-  List<Object> get props => [value];
+  UpdateObservaciones(this.value);
 }

@@ -12,20 +12,9 @@ class FormularioTablerosInitial extends FormularioTablerosState {}
 
 class FormularioTablerosCargando extends FormularioTablerosState {}
 
-class FormularioTablerosExito extends FormularioTablerosState {}
-
-class FormularioTablerosError extends FormularioTablerosState {
-  final String error;
-
-  const FormularioTablerosError({required this.error});
-
-  @override
-  List<Object> get props => [error];
-}
-
 class FormularioTablerosUpdated extends FormularioTablerosState {
-  final String mantenimiento;
   final List<String> mantenimientos;
+  final String mantenimiento;
   final String tablero;
   final DateTime fecha;
   final bool fasesYNeutroIdentificados;
@@ -38,6 +27,9 @@ class FormularioTablerosUpdated extends FormularioTablerosState {
   final double ab;
   final double ac;
   final double bc;
+  final double an;
+  final double bn;
+  final double cn;
   final double a;
   final double b;
   final double c;
@@ -49,11 +41,11 @@ class FormularioTablerosUpdated extends FormularioTablerosState {
   final String termoDespues;
   final String observaciones;
 
-  const FormularioTablerosUpdated({
-    this.mantenimiento = '',
+  FormularioTablerosUpdated({
     this.mantenimientos = const [],
+    this.mantenimiento = '',
     this.tablero = '',
-    required this.fecha,
+    DateTime? fecha,
     this.fasesYNeutroIdentificados = false,
     this.conductoresPeinados = false,
     this.proteccionesDeAcuerdoAlCalibre = false,
@@ -64,6 +56,9 @@ class FormularioTablerosUpdated extends FormularioTablerosState {
     this.ab = 0.0,
     this.ac = 0.0,
     this.bc = 0.0,
+    this.an = 0.0,
+    this.bn = 0.0,
+    this.cn = 0.0,
     this.a = 0.0,
     this.b = 0.0,
     this.c = 0.0,
@@ -74,11 +69,11 @@ class FormularioTablerosUpdated extends FormularioTablerosState {
     this.termoAntes = '',
     this.termoDespues = '',
     this.observaciones = '',
-  });
+  }) : fecha = fecha ?? DateTime.now();
 
   FormularioTablerosUpdated copyWith({
-    String? mantenimiento,
     List<String>? mantenimientos,
+    String? mantenimiento,
     String? tablero,
     DateTime? fecha,
     bool? fasesYNeutroIdentificados,
@@ -91,6 +86,9 @@ class FormularioTablerosUpdated extends FormularioTablerosState {
     double? ab,
     double? ac,
     double? bc,
+    double? an,
+    double? bn,
+    double? cn,
     double? a,
     double? b,
     double? c,
@@ -103,8 +101,8 @@ class FormularioTablerosUpdated extends FormularioTablerosState {
     String? observaciones,
   }) {
     return FormularioTablerosUpdated(
-      mantenimiento: mantenimiento ?? this.mantenimiento,
       mantenimientos: mantenimientos ?? this.mantenimientos,
+      mantenimiento: mantenimiento ?? this.mantenimiento,
       tablero: tablero ?? this.tablero,
       fecha: fecha ?? this.fecha,
       fasesYNeutroIdentificados: fasesYNeutroIdentificados ?? this.fasesYNeutroIdentificados,
@@ -117,6 +115,9 @@ class FormularioTablerosUpdated extends FormularioTablerosState {
       ab: ab ?? this.ab,
       ac: ac ?? this.ac,
       bc: bc ?? this.bc,
+      an: an ?? this.an,
+      bn: bn ?? this.bn,
+      cn: cn ?? this.cn,
       a: a ?? this.a,
       b: b ?? this.b,
       c: c ?? this.c,
@@ -132,8 +133,8 @@ class FormularioTablerosUpdated extends FormularioTablerosState {
 
   @override
   List<Object> get props => [
-        mantenimiento,
         mantenimientos,
+        mantenimiento,
         tablero,
         fecha,
         fasesYNeutroIdentificados,
@@ -146,6 +147,9 @@ class FormularioTablerosUpdated extends FormularioTablerosState {
         ab,
         ac,
         bc,
+        an,
+        bn,
+        cn,
         a,
         b,
         c,
@@ -157,4 +161,15 @@ class FormularioTablerosUpdated extends FormularioTablerosState {
         termoDespues,
         observaciones,
       ];
+}
+
+class FormularioTablerosExito extends FormularioTablerosState {}
+
+class FormularioTablerosError extends FormularioTablerosState {
+  final String error;
+
+  FormularioTablerosError({required this.error});
+
+  @override
+  List<Object> get props => [error];
 }

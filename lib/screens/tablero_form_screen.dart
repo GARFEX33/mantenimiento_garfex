@@ -1,15 +1,27 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:mantenimiento_garfex/blocs/formulario_tableros/formulario_tableros_bloc.dart';
 import 'package:mantenimiento_garfex/models/mantenimiento_tablero.dart';
 import 'package:mantenimiento_garfex/widgets/custom_button.dart';
 import 'package:mantenimiento_garfex/widgets/loading_indicator.dart';
 
-class TableroFormScreen extends StatelessWidget {
+class TableroFormScreen extends StatefulWidget {
+  @override
+  _TableroFormScreenState createState() => _TableroFormScreenState();
+}
+
+class _TableroFormScreenState extends State<TableroFormScreen> {
   final _formKey = GlobalKey<FormState>();
   final ImagePicker _picker = ImagePicker();
+  late TextEditingController _dateController;
+
+  @override
+  void initState() {
+    super.initState();
+    _dateController = TextEditingController(text: DateFormat('yyyy-MM-dd').format(DateTime.now()));
+  }
 
   Future<void> _pickImage(BuildContext context, bool isBefore) async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
@@ -20,6 +32,21 @@ class TableroFormScreen extends StatelessWidget {
       } else {
         context.read<FormularioTablerosBloc>().add(UpdateFotoDespues(bytes));
       }
+    }
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != DateTime.now()) {
+      setState(() {
+        _dateController.text = DateFormat('yyyy-MM-dd').format(picked);
+      });
+      context.read<FormularioTablerosBloc>().add(UpdateFecha(picked));
     }
   }
 
@@ -77,6 +104,18 @@ class TableroFormScreen extends StatelessWidget {
                           context.read<FormularioTablerosBloc>().add(UpdateTablero(value));
                         },
                         validator: (value) => value!.isEmpty ? 'Este campo es obligatorio' : null,
+                      ),
+                      SizedBox(height: 16.0),
+                      TextFormField(
+                        controller: _dateController,
+                        decoration: InputDecoration(
+                          labelText: 'Fecha',
+                          suffixIcon: IconButton(
+                            icon: Icon(Icons.calendar_today),
+                            onPressed: () => _selectDate(context),
+                          ),
+                        ),
+                        readOnly: true,
                       ),
                       Divider(height: 32.0),
                       Text(
@@ -162,6 +201,33 @@ class TableroFormScreen extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         onChanged: (value) {
                           context.read<FormularioTablerosBloc>().add(UpdateBc(double.tryParse(value) ?? 0.0));
+                        },
+                        validator: (value) => value!.isEmpty ? 'Este campo es obligatorio' : null,
+                      ),
+                      SizedBox(height: 16.0),
+                      TextFormField(
+                        decoration: InputDecoration(labelText: 'AN'),
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) {
+                          context.read<FormularioTablerosBloc>().add(UpdateAn(double.tryParse(value) ?? 0.0));
+                        },
+                        validator: (value) => value!.isEmpty ? 'Este campo es obligatorio' : null,
+                      ),
+                      SizedBox(height: 16.0),
+                      TextFormField(
+                        decoration: InputDecoration(labelText: 'BN'),
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) {
+                          context.read<FormularioTablerosBloc>().add(UpdateBn(double.tryParse(value) ?? 0.0));
+                        },
+                        validator: (value) => value!.isEmpty ? 'Este campo es obligatorio' : null,
+                      ),
+                      SizedBox(height: 16.0),
+                      TextFormField(
+                        decoration: InputDecoration(labelText: 'CN'),
+                        keyboardType: TextInputType.number,
+                        onChanged: (value) {
+                          context.read<FormularioTablerosBloc>().add(UpdateCn(double.tryParse(value) ?? 0.0));
                         },
                         validator: (value) => value!.isEmpty ? 'Este campo es obligatorio' : null,
                       ),
@@ -287,6 +353,9 @@ class TableroFormScreen extends StatelessWidget {
                               ab: stateUpdated.ab,
                               ac: stateUpdated.ac,
                               bc: stateUpdated.bc,
+                              an: stateUpdated.an,
+                              bn: stateUpdated.bn,
+                              cn: stateUpdated.cn,
                               a: stateUpdated.a,
                               b: stateUpdated.b,
                               c: stateUpdated.c,
