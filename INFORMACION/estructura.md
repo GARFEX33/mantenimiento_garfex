@@ -10,6 +10,15 @@ lib/
 |  |- custom_button.dart
 |- main.dart
 
+
+mantenimiento_garfex/
+├── lib/
+│   └── main.dart
+├── .env
+│ 
+├── pubspec.yaml
+
+
 ##Formulario Tableros
 
 1. **Campos del Formulario**:
