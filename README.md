@@ -1,6 +1,8 @@
 # mantenimiento_garfex
 
-A new Flutter project.
+# Ejecutar build_runner
+dart run build_runner watch
+
 
 ## Getting Started
 

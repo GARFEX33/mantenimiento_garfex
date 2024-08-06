@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mantenimiento_garfex/screens/ejemplo_screen.dart';
 import 'package:mantenimiento_garfex/screens/tablero_form_screen.dart';
 import 'package:mantenimiento_garfex/screens/transformador_form_screen.dart';
 import '../screens/home_screen.dart';
@@ -11,6 +12,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (_) => TableroFormScreen());
     case '/transformadores':
       return MaterialPageRoute(builder: (_) => TransformadorFormScreen());
+    case '/ejemplo':
+      return MaterialPageRoute(builder: (_) => TableroFormEjemploScreen());
+
     default:
       return MaterialPageRoute(
         builder: (_) => const Scaffold(

@@ -27,6 +27,13 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/transformadores');
               },
             ),
+                       const SizedBox(height: 20),
+            CustomButton(
+              text: 'Mantenimiento a Ejemplo',
+              onPressed: () {
+                Navigator.pushNamed(context, '/ejemplo');
+              },
+            ),
           ],
         ),
       ),
