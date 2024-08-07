@@ -1,52 +1,81 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mantenimiento_garfex/blocs/formulario_tablero/formulario_cubit.dart';
-import '../widgets/custom_text_form_field.dart';
+import 'package:mantenimiento_garfex/blocs/formulario_tablero/tablero_form_cubit.dart';
+import 'package:mantenimiento_garfex/inputs/inputs.dart'; // Asegúrate de importar los inputs
+import 'package:mantenimiento_garfex/widgets/widgets.dart'; // Asegúrate de importar los widgets
 
 class TableroFormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => FormularioCubit(),
-      child: Scaffold(
-        appBar: AppBar(title: Text('Formulario de Tablero')),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: FormularioForm(),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Formulario Tableros'),
+      ),
+      body: BlocProvider(
+        create: (context) => TableroFormCubit(),
+        child: const _TableroFormView(),
       ),
     );
   }
 }
 
-class FormularioForm extends StatelessWidget {
+class _TableroFormView extends StatelessWidget {
+  const _TableroFormView();
+
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FormularioCubit, FormularioState>(
-      builder: (context, state) {
-        return Column(
-          children: [
-            CustomTextFormField(
-              label: 'Nombre de Tablero',
-              onChanged: context.read<FormularioCubit>().tableroNameChanged,
-              errorMessage: state.tableroName.errorMessage,
-            ),
-            const SizedBox(height: 10),
-            CustomTextFormField(
-              label: 'Voltaje',
-              onChanged: context.read<FormularioCubit>().voltageChanged,
-              errorMessage: state.voltage.errorMessage,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                context.read<FormularioCubit>().onSubmit();
-              },
-              child: Text('Enviar'),
-            ),
-          ],
-        );
-      },
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: Form(
+          child: ListView(
+            children: [
+              SectionTitle(title: 'Datos del Servicio y Tablero'),
+              
+              // DropdownField
+              BlocBuilder<TableroFormCubit, TableroFormState>(
+                builder: (context, state) {
+                  return DropdownField(
+                    labelText: 'Mantenimiento',
+                    items: ['Opción 1', 'Opción 2', 'Opción 3'], // Actualiza con tus opciones
+                    onChanged: (value) {
+                      context.read<TableroFormCubit>().dropdownChanged(value);
+                    },
+                    errorMessage: state.dropdownInput.errorMessage,
+                  );
+                },
+              ),
+              SizedBox(height: 8.0),
+              
+              // Campo Nombre Tablero
+              BlocBuilder<TableroFormCubit, TableroFormState>(
+                builder: (context, state) {
+                  return CustomTextFormField(
+                    label: 'Tablero',
+                    onChanged: (value) {
+                      context.read<TableroFormCubit>().campoNombreTableroChanged(value);
+                    },
+                    errorMessage: state.campoNombreTablero.errorMessage,
+                  );
+                },
+              ),
+              SizedBox(height: 16.0),
+              
+              // Botón Enviar
+              BlocBuilder<TableroFormCubit, TableroFormState>(
+                builder: (context, state) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      context.read<TableroFormCubit>().onSubmit();
+                    },
+                    child: Text('Enviar'),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
